@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm1
+  namespace: dev
+data:
+  info: |
+    username:admin
+    password:123456
+
+# 注意，这里和其他资源不同的是，它没有spec，而是data
