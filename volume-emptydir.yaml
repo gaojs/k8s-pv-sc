@@ -9,15 +9,15 @@ spec:
     image: nginx:1.17.1
     ports:
     - containerPort: 80
-    volumeMounts:  # ½«logs-volume¹ÒÔÚµ½nginxÈİÆ÷ÖĞ£¬¶ÔÓ¦µÄÄ¿Â¼Îª /var/log/nginx
+    volumeMounts:  # å°†logs-volumeæŒ‚åœ¨åˆ°nginxå®¹å™¨ä¸­ï¼Œå¯¹åº”çš„ç›®å½•ä¸º /var/log/nginx
     - name: logs-volume
       mountPath: /var/log/nginx
   - name: busybox
     image: busybox:1.30
-    command: ["/bin/sh","-c","tail -f /logs/access.log"] # ³õÊ¼ÃüÁî£¬¶¯Ì¬¶ÁÈ¡Ö¸¶¨ÎÄ¼şÖĞÄÚÈİ
-    volumeMounts:  # ½«logs-volume ¹ÒÔÚµ½busyboxÈİÆ÷ÖĞ£¬¶ÔÓ¦µÄÄ¿Â¼Îª /logs
+    command: ["/bin/sh","-c","tail -f /logs/access.log"] # åˆå§‹å‘½ä»¤ï¼ŒåŠ¨æ€è¯»å–æŒ‡å®šæ–‡ä»¶ä¸­å†…å®¹
+    volumeMounts:  # å°†logs-volume æŒ‚åœ¨åˆ°busyboxå®¹å™¨ä¸­ï¼Œå¯¹åº”çš„ç›®å½•ä¸º /logs
     - name: logs-volume
       mountPath: /logs
-  volumes: # ÉùÃ÷volume£¬ nameÎªlogs-volume£¬ÀàĞÍÎªemptyDir
+  volumes: # å£°æ˜volumeï¼Œ nameä¸ºlogs-volumeï¼Œç±»å‹ä¸ºemptyDir
   - name: logs-volume
     emptyDir: {}
