@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv1
+  namespace: dev1
+  labels:
+    pv: nfs-pv1
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  # Recycle 删除PVC会同步删除PV | Retain 删除PVC不会同步删除PV
+  persistentVolumeReclaimPolicy: Recycle
+  nfs:
+    path: /root/data/nfstest/share/pv1
+    server: 192.168.112.173
+    readOnly: false
