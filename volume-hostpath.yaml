@@ -23,3 +23,11 @@ spec:
     hostPath: 
       path: /root/logs  # 指定node主机上的一个实际目录
       type: DirectoryOrCreate  # 目录存在就使用，不存在就先创建后使用
+#关于type的值的一点说明：
+#    DirectoryOrCreate 目录存在就使用，不存在就先创建后使用
+#    Directory   目录必须存在
+#    FileOrCreate  文件存在就使用，不存在就先创建后使用
+#    File 文件必须存在 
+#    Socket  unix套接字必须存在
+#    CharDevice  字符设备必须存在
+#    BlockDevice 块设备必须存在
