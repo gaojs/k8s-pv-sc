@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nfs-storage-pod-1
+  namespace: dev1
+spec:
+  containers:
+    - name: nfs-storage-pod-1
+      image: busybox
+      command:
+        - "/bin/sh"
+      args:
+        - "-c"
+        - "touch /mnt/teststorage && echo 111 > /mnt/teststorage && exit 0 || exit 1"
+      volumeMounts:
+        - name: nfs-pvc
+          mountPath: "/mnt"
+  restartPolicy: "Never"
+  volumes:
+    - name: nfs-pvc
+      persistentVolumeClaim:
+        claimName: nfs-storage-pvc-1
