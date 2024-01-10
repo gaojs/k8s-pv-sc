@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "5"
+  creationTimestamp: "2020-07-11T02:21:11Z"
+  generation: 5
+  labels:
+    app: nfs-client-provisioner
+    chart: nfs-client-provisioner-1.2.8
+    heritage: Tiller
+    io.cattle.field/appId: nfs-client-provisioner
+    release: nfs-client-provisioner
+  name: nfs-client-provisioner
+  namespace: kube-system
+  resourceVersion: "389319038"
+  selfLink: /apis/apps/v1/namespaces/kube-system/deployments/nfs-client-provisioner
+  uid: 5c660cb1-91a7-4fa6-8cec-dc2cd887b096
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: nfs-client-provisioner
+      release: nfs-client-provisioner
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        cattle.io/timestamp: "2023-02-02T01:49:40Z"
+        kubectl.kubernetes.io/restartedAt: "2022-11-28T11:42:35+08:00"
+      creationTimestamp: null
+      labels:
+        app: nfs-client-provisioner
+        release: nfs-client-provisioner
+    spec:
+      containers:
+      - env:
+        - name: NFS_PATH
+          value: /data/k8s-nfs-storage
+        - name: NFS_SERVER
+          value: 10.0.1.220
+        - name: PROVISIONER_NAME
+          value: nfs
+        image: quay.mirrors.ustc.edu.cn/external_storage/nfs-client-provisioner:v3.1.0-k8s1.11
+        imagePullPolicy: IfNotPresent
+        name: nfs-client-provisioner
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /persistentvolumes
+          name: nfs-client-root
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: nfs-client-provisioner
+      serviceAccountName: nfs-client-provisioner
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: nfs-client-root
+        nfs:
+          path: /data/k8s-nfs-storage
+          server: 10.0.1.220
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: "2020-07-11T02:21:11Z"
+    lastUpdateTime: "2023-02-02T01:50:02Z"
+    message: ReplicaSet "nfs-client-provisioner-5b975796fb" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  - lastTransitionTime: "2023-12-30T02:14:43Z"
+    lastUpdateTime: "2023-12-30T02:14:43Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  observedGeneration: 5
+  readyReplicas: 1
+  replicas: 1
+  updatedReplicas: 1

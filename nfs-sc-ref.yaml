@@ -1,0 +1,22 @@
+allowVolumeExpansion: true
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+  creationTimestamp: "2020-07-11T02:21:10Z"
+  labels:
+    app: nfs-client-provisioner
+    chart: nfs-client-provisioner-1.2.8
+    heritage: Tiller
+    io.cattle.field/appId: nfs-client-provisioner
+    release: nfs-client-provisioner
+  name: nfs-client
+  resourceVersion: "93227"
+  selfLink: /apis/storage.k8s.io/v1/storageclasses/nfs-client
+  uid: 24669b4a-92ed-44ec-8728-eb863e81ab1e
+parameters:
+  archiveOnDelete: "true"
+provisioner: nfs
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
