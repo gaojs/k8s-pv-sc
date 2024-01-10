@@ -8,10 +8,10 @@ metadata:
     app: nfs-client-provisioner
     release: nfs-client-provisioner
   name: nfs-client
-  selfLink: /apis/storage.k8s.io/v1/storageclasses/nfs-client
 parameters:
+  pathPattern: "${.PVC.namespace}/${.PVC.annotations.nfs.io/storage-path}"
   archiveOnDelete: "true"
-provisioner: nfs
-parameters:
-  pathPattern: "${.PVC.namespace}/${.PVC.annotations.nfs.io/storage-path}" # 此处也可以使用 "${.PVC.namespace}/${.PVC.name}" 来使用pvc的名称作为nfs中真实目录名称
   onDelete: delete
+provisioner: nfs
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
