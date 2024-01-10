@@ -31,7 +31,7 @@ spec:
           value: 10.0.1.220
         - name: PROVISIONER_NAME
           value: nfs
-        image: dyrnq/nfs-subdir-external-provisioner:latest
+        image: dyrnq/nfs-subdir-external-provisioner:v4.0.2
         imagePullPolicy: IfNotPresent
         name: nfs-client-provisioner
         resources: {}
